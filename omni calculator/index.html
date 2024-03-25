@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omni calculator</title>
+    <link rel="stylesheet" href="/omni calculator/style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="heading">
+            <h1>Omni calculator</h1>
+        </div>
+        <div class="omni">
+            <form>
+                <label for="hour">Hourly Wage: </label>
+                <input type="text" name="hour" id="hour" onkeyup="calculateWageHourly()"><br><br>
+                <label for="daily">Daily Wage: </label>
+                <input type="text" name="daily" id="daily" onkeyup="calculateWageDaily()"><br><br>
+                <label for="weekly">Weekly Wage: </label>
+                <input type="text" name="weekly" id="weekly" onkeyup="calculateWageWeekly()"><br><br>
+                <label for="monthly">Monthly Wage: </label>
+                <input type="text" name="monthly" id="monthly" onkeyup="calculateWageMonthly()"><br><br>
+                <label for="yearly">Yearly wage: </label>
+                <input type="text" name="yearly" id="yearly" onkeyup="calculateWageYearly()"><br><br>
+            </form>
+        </div>
+    </div>
+
+
+
+  <script src="/script.js"></script>  
+</body>
+</html>
