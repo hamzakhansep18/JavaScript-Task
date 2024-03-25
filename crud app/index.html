@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table with AJAX</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+<body>
+    <table id="dataTable" border="1">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">ID</th>
+                <th onclick="sortTable(1)">Name</th>
+                <th onclick="sortTable(2)">Age</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows go here -->
+        </tbody>
+    </table>
+    <br>
+    <button onclick="addRow()">Add Data</button>
+    <script>
+    let data = []; 
+        updateTable();
+        
+        function updateTable() {
+            let table = document.getElementById('dataTable');
+            let tbody = table.getElementsByTagName('tbody')[0];
+            tbody.innerHTML = ''; 
+            data.sort((a, b) => a[0] - b[0]);
+            data.forEach(rowData => {
+                let row = tbody.insertRow();
+                rowData.forEach((value, index) => {
+                    let cell = row.insertCell();
+                    cell.appendChild(document.createTextNode(value));
+        
+                    if (index === 1 || index === 2) {
+                        cell.setAttribute('data-index', index);
+                        cell.onclick = function() {
+                            chooseUpdateOption(rowData[0], index);
+                        };
+                    }
+                });
+        
+                let actionCell = row.insertCell();
+                let updateButton = document.createElement('button');
+                updateButton.textContent = 'Update';
+                updateButton.onclick = function() {
+                    chooseUpdateOption(rowData[0]);
+                };
+        
+                let deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    deleteRow(rowData[0]);
+                };
+        
+                actionCell.appendChild(updateButton);
+                actionCell.appendChild(deleteButton);
+            });
+        }
+        
+        function addRow() {
+            let name = prompt('Enter Name:');
+            let age = prompt('Enter Age:');
+            if (name !== null && age !== null && name.trim() !== '' && age.trim() !== '') {
+                let id = data.length + 1;
+                let newRow = [id, name, age];
+                data.push(newRow);
+                updateTable();
+            }
+        }
+        
+        function chooseUpdateOption(id, index) {
+            let option = prompt('Choose what to update: 1 for Name, 2 for Age');
+            
+            if (option !== null) {
+                option = parseInt(option);
+        
+                if (option === 1 || option === 2) {
+                    updateRow(id, option, index);
+                } else {
+                    alert('Invalid option. Please enter 1 for Name or 2 for Age.');
+                }
+            }
+        }
+        
+        function updateRow(id, option, index) {
+            let rowToUpdate = data.find(row => row[0] === id);
+        
+            if (option === 1) {
+                let newName = prompt('Enter new name:', rowToUpdate[1]);
+                if (newName !== null && newName.trim() !== '') {
+                    rowToUpdate[1] = newName;
+                } else {
+                    alert('Invalid input. Name not updated.');
+                }
+            } else if (option === 2) {
+                let newAge = prompt('Enter new age:', rowToUpdate[2]);
+                if (newAge !== null && !isNaN(newAge) && newAge.trim() !== '') {
+                    rowToUpdate[2] = newAge;
+                } else {
+                    alert('Invalid input. Age not updated.');
+                }
+            }
+            updateTable();
+        }
+        
+        function deleteRow(id) {
+            data = data.filter(row => row[0] !== id);
+            updateTable();
+        }
+        
+        function sortTable(column) {
+            data.sort((a, b) => a[column] - b[column]);
+            updateTable();
+        }
+        </script>
+</body>
+</html>
