@@ -1,0 +1,74 @@
+.main{
+    width: 100%;
+    display: flex;
+}
+.left{
+    width: 30%;
+    
+}
+.leftOne{
+    border: 2px solid ;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.leftOne input{
+    margin-top: 5px;
+}
+.leftOne button{
+    margin-top: 5px;
+}
+
+.leftDown{
+    margin-top: 20px;
+    border: 2px solid ;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.leftDown input{
+    margin-top: 5px;
+}
+.leftDown button{
+    margin-top: 5px;
+}
+.leftDown label{
+    margin-top: 5px;
+}
+.right{
+    margin-top: 60px;
+    margin-left: 20px;
+    width: 70%;
+    display: flex;
+  
+}
+.budget{
+    border:  2px solid;
+    width: 33%;
+    height: 200px;
+    text-align: center;
+}
+.Expenses{
+    border: 2px solid;
+    width: 33%;
+    height: 200px;
+    text-align: center;
+}
+.Balance{
+    border: 2px solid;
+    width: 33%;
+    height: 200px;
+    text-align: center;
+}
+.ExpenseTitle{
+    border: 2px solid;
+    width: 33.33%;
+    height: 200px;
+    text-align: center;
+}
+.ExpenseValue{
+    border: 2px solid;
+    width: 33.33%;
+    height: 200px;
+    text-align: center;
+}
